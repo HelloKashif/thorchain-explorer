@@ -1,0 +1,52 @@
+<table *ngIf="stakers">
+  <thead>
+    <tr>
+      <th>Pool</th>
+      <th>Rune Address</th>
+      <th>Asset</th>
+      <th>Units</th>
+      <th>Last Stake</th>
+      <th>Last UnStake</th>
+      <th>Pending Rune</th>
+      <th>Pending TX Id</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let staker of stakers">
+      <td >
+        <div class="flxr">
+            <!-- //@TOdo needs work on logo -->
+          <!-- <app-asset-logo *ngIf="staker" [assetPool]="staker.asset"></app-asset-logo> --> 
+          {{staker.asset}}
+        </div>
+      </td>
+      <td>
+          <a [routerLink]="['/', 'addresses', staker.rune_address]" title="Rune Address">
+              <b>{{staker.rune_address.substring(0,8)}}...</b>
+          </a>
+      </td>
+      <td >
+          <a [routerLink]="['/', 'addresses', staker.asset_address]" title="Asset Address">
+              <b>{{staker.asset_address.substring(0,8)}}...</b>
+          </a>
+      </td>
+      <td>
+          {{staker.units | assetUnits:8 }}
+      </td>
+      <td >
+          {{staker.last_stake}}
+      </td>
+      <td >
+          {{staker.last_unstake}}
+      </td>
+      <td >
+          {{staker.pending_rune}}
+      </td>
+      <td >
+          {{staker.pending_tx_id}}
+      </td>
+  </tr>
+  </tbody>
+</table>
+
+<span *ngIf="!stakers">...</span>
